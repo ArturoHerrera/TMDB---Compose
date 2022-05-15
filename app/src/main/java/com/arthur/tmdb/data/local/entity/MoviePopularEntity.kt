@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.arthur.tmdb.data.remote.dto.MovieDataDto
-import com.arthur.tmdb.data.remote.dto.MovieNowPlayingDto
 import com.arthur.tmdb.data.remote.dto.MoviePopularDto
 
 @Entity(tableName = "movie_popular")

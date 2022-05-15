@@ -12,7 +12,7 @@ interface MovieApi {
 
     @GET("movie/{movieId}")
     suspend fun getMovie(
-        @Path("movieId") id: Int
+        @Path("movieId") id: Long
     ): Response<MovieDetailDto>
 
     @GET("movie/now_playing")

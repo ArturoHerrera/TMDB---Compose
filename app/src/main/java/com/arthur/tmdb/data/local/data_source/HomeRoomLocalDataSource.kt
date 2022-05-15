@@ -15,7 +15,7 @@ class HomeRoomLocalDataSource(private val dao: MovieDao) : HomeLocalDataSource {
         .map { it.map { entity -> MediaItem(entity) } }
 
     override fun getRandomPopularMovies(): Flow<List<MediaItem>> = dao
-        .getRandomPlayingNowMovies()
+        .getRandomPopularMovies()
         .map { it.map { entity -> MediaItem(entity) } }
 
     override suspend fun insertMovie(entity: MoviePlayingNowEntity) =

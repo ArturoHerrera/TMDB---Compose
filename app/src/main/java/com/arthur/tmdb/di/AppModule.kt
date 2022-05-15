@@ -1,6 +1,5 @@
 package com.arthur.tmdb.di
 
-import android.app.Application
 import android.content.Context
 import androidx.annotation.NonNull
 import com.arthur.tmdb.BuildConfig

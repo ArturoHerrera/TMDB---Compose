@@ -5,27 +5,23 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Black
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.arthur.tmdb.R
 import com.arthur.tmdb.data.models.MediaItem
 import com.arthur.tmdb.ui.theme.SuperWhite
 import kotlin.random.Random
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MediaHorizontalListComponent(section:String, mediaList: List<MediaItem>) {
+fun MediaHorizontalListComponent(sectionTitle:String, mediaList: List<MediaItem>, onMediaClick: (Long) -> Unit) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -34,7 +30,7 @@ fun MediaHorizontalListComponent(section:String, mediaList: List<MediaItem>) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = section,
+                text = sectionTitle,
                 modifier = Modifier.padding(16.dp, 8.dp),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
@@ -59,7 +55,7 @@ fun MediaHorizontalListComponent(section:String, mediaList: List<MediaItem>) {
             items(mediaList) { media ->
                 MediaCardComponent(
                     mItem = media,
-                    onMediaClick = { _, _ -> }
+                    onMediaClick = { onMediaClick(it) }
                 )
             }
         }
@@ -68,12 +64,12 @@ fun MediaHorizontalListComponent(section:String, mediaList: List<MediaItem>) {
 
 @ExperimentalMaterialApi
 @Composable
-fun MediaCardComponent(mItem: MediaItem, onMediaClick: (Long, String) -> Unit) {
+fun MediaCardComponent(mItem: MediaItem, onMediaClick: (Long) -> Unit) {
     Card(
         backgroundColor = Color(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256)),
         modifier = Modifier.size(140.dp, 210.dp),
         elevation = 8.dp,
-        onClick = { onMediaClick(mItem.id, "movie") }
+        onClick = { onMediaClick(mItem.id) }
     ) {
         Column() {
             NetworkImage(
