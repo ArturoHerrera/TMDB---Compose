@@ -1,5 +1,6 @@
 package com.arthur.tmdb.data.models
 
+import com.arthur.tmdb.BuildConfig
 import com.arthur.tmdb.data.local.entity.MoviePlayingNowEntity
 
 data class MediaItem(
@@ -14,4 +15,6 @@ data class MediaItem(
         posterUrl = entity.posterUrl,
         title = entity.title
     )
+
+    fun getImageUrl() : String = "${BuildConfig.base_image_url}$posterUrl"
 }
