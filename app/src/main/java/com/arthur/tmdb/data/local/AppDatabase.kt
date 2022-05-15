@@ -6,10 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.arthur.tmdb.data.local.dao.MovieDao
 import com.arthur.tmdb.data.local.entity.MoviePlayingNowEntity
+import com.arthur.tmdb.data.local.entity.MoviePopularEntity
 
 @Database(
     entities = [
-        MoviePlayingNowEntity::class
+        MoviePlayingNowEntity::class,
+        MoviePopularEntity::class
     ], version = 1, exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

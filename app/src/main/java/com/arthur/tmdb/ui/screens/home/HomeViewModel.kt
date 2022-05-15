@@ -29,5 +29,11 @@ class HomeViewModel @Inject constructor(
                 vmUiState.update { it.copy( playingNowMovieList = mediaItemList ) }
             }
         }
+
+        viewModelScope.launch {
+            homeRepository.getRandomPopularMovies().collect { mediaItemList ->
+                vmUiState.update { it.copy( popularMovieList = mediaItemList ) }
+            }
+        }
     }
 }

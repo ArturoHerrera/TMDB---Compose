@@ -21,4 +21,14 @@ class HomeRetrofitRemoteDataSource(
         }
     }
 
+    override suspend fun getRandomPopularMovies(): ServiceResult<MoviePopularDto> {
+        val response = movieApi.getPopularMovies((1..1000).random())
+
+        return if (response.isSuccessful) {
+            ServiceResult.Success(response.body())
+        } else {
+            ServiceResult.Error(ApiUtils.getStatusCodeErrorMessage(response.code()))
+        }
+    }
+
 }

@@ -4,6 +4,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,30 +25,41 @@ import kotlin.random.Random
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MediaHorizontalListComponent(mediaList: List<MediaItem>) {
+fun MediaHorizontalListComponent(section:String, mediaList: List<MediaItem>) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        Text(
-            text = "Playing Now Movies",
-            modifier = Modifier.padding(16.dp, 8.dp),
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Bold,
-            color = SuperWhite
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = section,
+                modifier = Modifier.padding(16.dp, 8.dp),
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = SuperWhite
+            )
+            IconButton(onClick = {}) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowForward,
+                    contentDescription = null
+                )
+            }
+        }
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(
-                top = 8.dp,
+                top = 0.dp,
                 start = 8.dp,
                 end = 16.dp,
-                bottom = 65.dp
+                bottom = 24.dp
             )
         ) {
             items(mediaList) { media ->
                 MediaCardComponent(
                     mItem = media,
-                    onMediaClick = {_,_ -> }
+                    onMediaClick = { _, _ -> }
                 )
             }
         }
