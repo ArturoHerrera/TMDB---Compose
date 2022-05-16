@@ -15,27 +15,7 @@ import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.upstream.HttpDataSource
 
 
-/*@Composable
-fun VideoPlayer() {
-    // This is the official way to access current context from Composable functions
-    val context = LocalContext.current
-
-    // Do not recreate the player everytime this Composable commits
-    val exoPlayer = remember(context) {
-        SimpleExoPlayer.Builder(context).build().apply {
-            val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(context,
-                Util.getUserAgent(context, context.packageName))
-
-            val source = ProgressiveMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(
-                    Uri.parse("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                ))
-
-            this.prepare(source)
-        }
-    }
-}*/
-
+//TODO Por mejorar. No funciona aun.
 @Composable
 fun VideoPlayer() {
     val videoURI = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"

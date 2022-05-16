@@ -16,8 +16,11 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 object Destinations {
     const val HOME_ROUTE = "home"
+    const val MOST_POPULAR_MOVIES_ROUTE = "most_popular_movies"
+    const val PLAYING_NOW_MOVIES_ROUTE = "playing_now_movies"
     const val MOVIE_DETAIL = "movie_detail"
     const val TV_SHOW_DETAIL = "tv_show_Detail"
+
 
     //Args keys
     const val MOVIE_ID = "movie_id"
@@ -41,6 +44,8 @@ fun TMDBNavGraph(
         composable(Destinations.HOME_ROUTE) {
             HomeScreen(
                 navigateToMovieDetail = actions.navigateToMovieDetail,
+                navigateToMostPopularMoviesScreen = actions.navigateToMostPopularMoviesScreen,
+                navigateToPlayingNowMoviesScreen = actions.navigateToPlayingNowMoviesScreen,
             )
         }
         composable(route = Destinations.MOVIE_DETAIL + "/{${Destinations.MOVIE_ID}}",
@@ -58,6 +63,12 @@ fun TMDBNavGraph(
 class MainActions(navController: NavHostController) {
     val navigateToMovieDetail: (Long) -> Unit = { movieId ->
         navController.navigate(Destinations.MOVIE_DETAIL + "/$movieId")
+    }
+    val navigateToMostPopularMoviesScreen: () -> Unit = {
+        navController.navigate(Destinations.MOST_POPULAR_MOVIES_ROUTE )
+    }
+    val navigateToPlayingNowMoviesScreen: () -> Unit = {
+        navController.navigate(Destinations.PLAYING_NOW_MOVIES_ROUTE )
     }
     val popUpToToHome: () -> Unit = {
         navController.navigate(Destinations.HOME_ROUTE) {

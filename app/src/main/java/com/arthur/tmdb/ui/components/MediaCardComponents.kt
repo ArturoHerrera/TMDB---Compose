@@ -1,7 +1,9 @@
 package com.arthur.tmdb.ui.components
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -21,7 +23,12 @@ import kotlin.random.Random
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun MediaHorizontalListComponent(sectionTitle:String, mediaList: List<MediaItem>, onMediaClick: (Long) -> Unit) {
+fun MediaHorizontalListComponent(
+    sectionTitle: String,
+    mediaList: List<MediaItem>,
+    onMediaClick: (Long) -> Unit,
+    onSeeMore: () -> Unit,
+) {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -36,7 +43,7 @@ fun MediaHorizontalListComponent(sectionTitle:String, mediaList: List<MediaItem>
                 fontWeight = FontWeight.Bold,
                 color = SuperWhite
             )
-            IconButton(onClick = {}) {
+            IconButton(onClick = onSeeMore) {
                 Icon(
                     imageVector = Icons.Filled.ArrowForward,
                     contentDescription = null
@@ -58,6 +65,22 @@ fun MediaHorizontalListComponent(sectionTitle:String, mediaList: List<MediaItem>
                     onMediaClick = { onMediaClick(it) }
                 )
             }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class, androidx.compose.foundation.ExperimentalFoundationApi::class)
+@Composable
+fun GridMoviesComponent(mediaList: List<MediaItem>, onMediaClick: (Long) -> Unit) {
+    LazyVerticalGrid(
+        cells = GridCells.Fixed(3),
+        contentPadding = PaddingValues(0.dp)
+    ) {
+        items(mediaList) { item ->
+            MediaCardGridComponent(
+                mItem = item,
+                onMediaClick = { }
+            )
         }
     }
 }
@@ -84,7 +107,52 @@ fun MediaCardComponent(mItem: MediaItem, onMediaClick: (Long) -> Unit) {
                 ) {
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
-                        verticalArrangement = Arrangement.Bottom
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = mItem.title,
+                            fontSize = 10.sp,
+                            style = MaterialTheme.typography.h6,
+                            color = SuperWhite,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight()
+                                .padding(start = 0.dp, end = 0.dp, top = 8.dp),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@ExperimentalMaterialApi
+@Composable
+fun MediaCardGridComponent(mItem: MediaItem, onMediaClick: (Long) -> Unit) {
+    Card(
+        backgroundColor = Color(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256)),
+        modifier = Modifier
+            .size(140.dp, 210.dp)
+            .padding(8.dp),
+        elevation = 8.dp,
+        onClick = { onMediaClick(mItem.id) }
+    ) {
+        Column() {
+            NetworkImage(
+                modifier = Modifier
+                    .aspectRatio(0.8f),
+                url = mItem.getImageUrl(),
+            )
+            Box() {
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    color = Black.copy(alpha = 0.7f)
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
                     ) {
                         Text(
                             text = mItem.title,

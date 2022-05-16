@@ -69,7 +69,8 @@ fun MovieDetailScreen(
             uiState.movieDetail?.let { safeMovieItem ->
                 DetailMovieComponent(safeMovieItem)
 
-                VideoPlayer()
+                //TODO No funciona aun. Falta investigar mas.
+                //VideoPlayer()
             } ?: Box(
                 modifier = Modifier
                     .fillMaxSize()
