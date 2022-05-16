@@ -1,7 +1,9 @@
 # TMDB---Compose
 Aplicación con Jetpack Compose, MVVM e integración de la API de TMDB.
 
+
 ToDo:
+
 
 Realizado:
 
@@ -22,6 +24,7 @@ Realizado:
 ✓ Se muestra el detalle de las pel{iculas. (Lo mismo sería para tvShows; las entidades y modelos fueron creados).
 
 
+
 Por terminar:
 - Implementar las llamadas a los servicios de TvShows. (Es replicar lo hecho con los servicios de Movies)
 - Corregir player de video. Investigar como implementar mejor Exoplayer o alguna herramienta similar. 
@@ -33,6 +36,9 @@ Por terminar:
 
 
 
+
 Se intenta seguir los principios de la arquitectura recomendada por Android.
+
 https://developer.android.com/topic/architecture#recommended-app-arch
+
 https://developer.android.com/kotlin/flow?hl=es-419
