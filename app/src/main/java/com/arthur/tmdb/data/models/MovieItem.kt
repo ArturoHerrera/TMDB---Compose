@@ -6,6 +6,7 @@ import com.arthur.tmdb.data.local.entity.MovieDetailEntity
 data class MovieItem(
     val id: Long,
     val title: String,
+    val overview: String,
     val video: Boolean,
     val posterPath: String,
     val voteAverage: Float,
@@ -18,6 +19,7 @@ data class MovieItem(
         posterPath = entity.posterPath,
         voteAverage = entity.voteAverage,
         releaseDate = entity.releaseDate,
+        overview = entity.overview,
     )
 
     fun getImageUrl() : String = "${BuildConfig.base_image_url}$posterPath"
