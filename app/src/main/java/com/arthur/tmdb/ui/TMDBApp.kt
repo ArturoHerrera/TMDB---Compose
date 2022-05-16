@@ -2,6 +2,7 @@ package com.arthur.tmdb.ui
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import com.arthur.tmdb.ui.theme.TmdbcomposeTheme
@@ -15,8 +16,11 @@ fun TMDBApp() {
     TmdbcomposeTheme {
         val navController = rememberNavController()
 
-        TMDBNavGraph(
-            navController = navController
-        )
+        Scaffold {
+            TMDBNavGraph(
+                navController = navController
+            )
+        }
+
     }
 }
