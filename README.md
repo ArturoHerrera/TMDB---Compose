@@ -4,12 +4,19 @@ Aplicación con Jetpack Compose, MVVM e integración de la API de TMDB.
 ToDo:
 Realizado:
 ✓ Se establece patrón arquitectónico; MVVM.
+
 ✓ Inyección de dependencias con Hilt.
+
 ✓ UI con Jetpack Compose.
+
 ✓ Compose Navigation.
+
 ✓ Implementación de la API de Flows de Kotlin para promover la reactividad de la aplicación.
+
 ✓ Implementacion de Room para persistencia de datos. Por cuestion de contextos, se decidió hacer tablas separadas.
+
 ✓ Se integra la API de TMDB.
+
 ✓ Se muestra el detalle de las pel{iculas. (Lo mismo sería para tvShows; las entidades y modelos fueron creados).
 
 Por terminar:
