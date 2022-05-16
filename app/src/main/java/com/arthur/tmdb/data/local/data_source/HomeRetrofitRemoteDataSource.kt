@@ -22,7 +22,7 @@ class HomeRetrofitRemoteDataSource(
     }
 
     override suspend fun getRandomPopularMovies(): ServiceResult<MoviePopularDto> {
-        //TODO Revisar si 1000 es el maximo
+        //TODO Revisar si 1000 es el maximo. La documentación no es exacta.
         val response = movieApi.getPopularMovies((1..1000).random())
 
         return if (response.isSuccessful) {
