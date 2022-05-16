@@ -8,8 +8,17 @@ pluginManagement {
         id 'com.android.application' version '7.1.0-alpha11'
         id 'com.android.library' version '7.1.0-alpha11'
         id 'org.jetbrains.kotlin.android' version '1.6.10'
+        id 'org.jetbrains.kotlin.android' version '1.6.10'
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if( requested.id.id == 'dagger.hilt.android.plugin') {
+                useModule("com.google.dagger:hilt-android-gradle-plugin:2.42")
+            }
+        }
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
