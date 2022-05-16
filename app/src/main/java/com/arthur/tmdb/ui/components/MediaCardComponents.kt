@@ -1,10 +1,8 @@
 package com.arthur.tmdb.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
@@ -71,15 +69,19 @@ fun MediaHorizontalListComponent(
 
 @OptIn(ExperimentalMaterialApi::class, androidx.compose.foundation.ExperimentalFoundationApi::class)
 @Composable
-fun GridMoviesComponent(mediaList: List<MediaItem>, onMediaClick: (Long) -> Unit) {
+fun GridMoviesComponent(mediaList: List<MediaItem>, onMediaClick: (Long) -> Unit, lastItemVisible: (Boolean ) -> Unit) {
+    val listState = rememberLazyListState()
     LazyVerticalGrid(
+        state = listState,
         cells = GridCells.Fixed(3),
         contentPadding = PaddingValues(0.dp)
     ) {
+        //TODO Avisar cuando se llegue al final del scroll o si el ultimo item es visible.
+        Log.i("testScroll", "istState.firstVisibleItemIndex ---> ${listState.firstVisibleItemIndex}")
         items(mediaList) { item ->
             MediaCardGridComponent(
                 mItem = item,
-                onMediaClick = { }
+                onMediaClick = { mediaId -> onMediaClick(mediaId) }
             )
         }
     }

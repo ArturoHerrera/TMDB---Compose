@@ -1,13 +1,11 @@
 package com.arthur.tmdb.di
 
 import com.arthur.tmdb.data.local.AppDatabase
-import com.arthur.tmdb.data.local.data_source.HomeRetrofitRemoteDataSource
-import com.arthur.tmdb.data.local.data_source.HomeRoomLocalDataSource
-import com.arthur.tmdb.data.local.data_source.MovieDetailRetrofitRemoteDataSource
-import com.arthur.tmdb.data.local.data_source.MovieDetailRoomLocalDataSource
+import com.arthur.tmdb.data.local.data_source.*
 import com.arthur.tmdb.data.remote.api.MovieApi
 import com.arthur.tmdb.data.repository.HomeRepository
 import com.arthur.tmdb.data.repository.MovieDetailRepository
+import com.arthur.tmdb.data.repository.ShowMoreMoviesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,4 +36,13 @@ object RepositoryModule {
         MovieDetailRetrofitRemoteDataSource(movieApi)
     )
 
+    @ViewModelScoped
+    @Provides
+    fun providesShowMoreMoviesRepository(
+        db: AppDatabase,
+        movieApi: MovieApi
+    ): ShowMoreMoviesRepository = ShowMoreMoviesRepository(
+        ShowMoreMoviesRoomLocalDataSource(db.movieDao()),
+        ShowMoreMoviesRetrofitRemoteDataSource(movieApi)
+    )
 }
