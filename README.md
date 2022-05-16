@@ -35,6 +35,7 @@ Por terminar:
   de una lista es visible, ese seria mi triger para hacer la peticion con la nueva página.
 
 
+PD: Por cuestión de las pruebas, la llave la API se dejó en el BuildConfig, hay mejores maneras de obtener una llave, se que no es lo mejor dejarla pública.
 
 
 Se intenta seguir los principios de la arquitectura recomendada por Android.
