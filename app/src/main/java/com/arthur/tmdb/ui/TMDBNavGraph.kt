@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.arthur.tmdb.ui.screens.home.HomeScreen
 import com.arthur.tmdb.ui.screens.movie_detail.MovieDetailScreen
+import com.arthur.tmdb.ui.screens.show_more_movies.ShowMoreMoviesScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 object Destinations {
@@ -52,9 +53,16 @@ fun TMDBNavGraph(
             arguments = listOf(
                 navArgument(Destinations.MOVIE_ID) { type = NavType.LongType }
             )) { backStackEntry ->
+            //TODO Sobreescibir el onBack CUANDO el origen sea ShoMoreMoviesScreen y haga el popUpToHome correcto.
             MovieDetailScreen(
                 movieId = backStackEntry.arguments?.getLong(Destinations.MOVIE_ID),
                 onBack = actions.popUpToToHome,
+            )
+        }
+        composable(Destinations.PLAYING_NOW_MOVIES_ROUTE) {
+            ShowMoreMoviesScreen(
+                navigateToMovieDetail = actions.navigateToMovieDetail,
+                popUpToToHome = actions.popUpToToHome
             )
         }
     }
@@ -65,10 +73,10 @@ class MainActions(navController: NavHostController) {
         navController.navigate(Destinations.MOVIE_DETAIL + "/$movieId")
     }
     val navigateToMostPopularMoviesScreen: () -> Unit = {
-        navController.navigate(Destinations.MOST_POPULAR_MOVIES_ROUTE )
+        navController.navigate(Destinations.MOST_POPULAR_MOVIES_ROUTE)
     }
     val navigateToPlayingNowMoviesScreen: () -> Unit = {
-        navController.navigate(Destinations.PLAYING_NOW_MOVIES_ROUTE )
+        navController.navigate(Destinations.PLAYING_NOW_MOVIES_ROUTE)
     }
     val popUpToToHome: () -> Unit = {
         navController.navigate(Destinations.HOME_ROUTE) {
